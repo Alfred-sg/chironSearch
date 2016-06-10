@@ -1,0 +1,37 @@
+/* chiron-search */
+.chiron-search-dropdown{
+    padding-left: 0;
+    background-color: white;
+    list-style: none;
+    padding:5px 0;
+    font-size:14px;
+    border-radius:4px;
+    border:1px solid #ddd;
+}
+.chiron-search-dropdown-item a{
+    text-decoration:none;
+    display:block;
+    padding:2px .4em;
+    line-height:1.5；
+    min-height:0;
+    font-weight:400;
+    color:#262626;
+}
+.chiron-search-dropdown-item.active{
+    background-color:#ddd;
+    color:#262626; 
+}
+.chiron-search-dropdown-item a:hover,.chiron-search-dropdown-item a:focus{
+    text-decoration:none;
+    background:#5897fb;
+    color:white;
+}
+.chiron-search-result-item{
+    padding:2px 0;
+    margin-right:10px;
+}
+.chiron-search-result-remove{
+    color:#5596f2;
+    font-size:12px;
+    margin-left: 2px;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="chiron.search.css" rel="stylesheet" type="text/css">
+
+
+<body>
+
+<div class="" style="width:500px;margin:50px auto">
+	<input type="text" class="form-control" id="chiron" style="width:200px;display:inline-block">
+</div>
+
+
+<script src="jquery-1.12.4.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="chiron.search.js"></script>
+<script>
+
+$(function(){
+
+	$("#chiron").chironSearch({
+		data:[{
+			field:1,
+			value:"apple"
+		},{
+			field:2,
+			value:"banana"
+		},{
+			field:3,
+			value:"tomato"
+		},{
+			field:4,
+			value:"pineapple"
+		},{
+			field:5,
+			value:"watermelon"
+		},{
+			field:6,
+			value:"shaddock"
+		}],
+		selectedData:[1],
+		uploadForm:"select"
+	}).css({"width":400})
+
+	$("#chiron").on("select:chironSearch",function(event,ele){
+		console.log(ele)
+	})
+
+});
+
+</script>
+</body>
+</html>
