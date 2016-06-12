@@ -9,7 +9,8 @@
 
 
 <body>
-
+<button class="btn btn-default" type="button" id="toggle1">toggle1</button>
+<button class="btn btn-default" type="button" id="toggle2">toggle2</button>
 <div class="" style="width:500px;margin:50px auto">
 	<input type="text" class="form-control" id="chiron" style="width:200px;display:inline-block">
 </div>
@@ -48,6 +49,49 @@ $(function(){
 
 	$("#chiron").on("select:chironSearch",function(event,ele){
 		console.log(ele)
+	});
+
+	$("#toggle1").click(function(){
+		$("#chiron").chironSearch({
+			data:[{
+				field:1,
+				value:"apple"
+			},{
+				field:2,
+				value:"banana"
+			},{
+				field:3,
+				value:"tomato"
+			},{
+				field:4,
+				value:"pineapple"
+			},{
+				field:5,
+				value:"watermelon"
+			}],
+			selectedData:[1],
+			uploadForm:"select"
+		})
+	});
+
+	$("#toggle2").click(function(){
+		$("#chiron").chironSearch({
+			data:[{
+				field:1,
+				value:"apple"
+			},{
+				field:2,
+				value:"banana"
+			},{
+				field:3,
+				value:"tomato"
+			},{
+				field:4,
+				value:"pineapple"
+			}],
+			selectedData:[1],
+			uploadForm:"select"
+		})
 	})
 
 });

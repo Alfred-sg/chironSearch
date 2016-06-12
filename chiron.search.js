@@ -121,16 +121,12 @@ ChironSearch.prototype.bindSearchEvent=function(){
 
 	if ( that.options.sideSearch=="client" ){
 		this.$trigger.off("click").on("click",function(event){
-			if ( that.$dropdown ){
-				that.$dropdown.show();
-			}else{
-				that.updateData.call(that);
-			};
+			that.updateData.call(that);
 		});
 	};
 
 	$(document).on("click",function(event){
-		if ( !$(event.target).is(that.$trigger) && that.$dropdown ) that.$dropdown.hide();
+		if ( !$(event.target).is(that.$trigger) && that.$dropdown ) that.$dropdown.remove();
 	});
 };
 
@@ -155,12 +151,12 @@ ChironSearch.prototype.initServer=function(){
       	dataType: this.options.dataType,
       	success: function (res) {
 			that.options.success.call(this,res);
-      		that.$trigger.trigger("search-success",res);
+      		that.$trigger.trigger("success:chironSearch",res);
       		that.updateData(res);
       	},
       	error: function (res) {
 			that.options.error.call(this,res);
-      		that.$trigger.trigger("search-error",res);
+      		that.$trigger.trigger("error:chironSearch",res);
     	}
     };
 
@@ -527,7 +523,7 @@ ChironSearch.prototype.destroy=function(){
 	this.$trigger.siblings(".chiron-search-result").remove();
 	this.$trigger.siblings("[name='"+this.options.name+"']").remove();
 
-	delete this.$result;
+	this.$result.html("");
 
 	return this.$trigger;
 };
@@ -599,7 +595,7 @@ function equal(objA,objB){
 		case "string":
 			if ( $.type(objB)!="string" && $.type(objB)!="number" ) return false;
 
-			return Number(objA)==objB;
+			return objA==String(objB);
 
 		case "number":
 			if ( $.type(objB)!="string" && $.type(objB)!="number" ) return false;
