@@ -411,7 +411,9 @@ ChironSearch.prototype.initResult=function(addItem){
 
 		setTimeout(function(){
 			var width=that.$trigger.innerWidth();
-			that.$result.width(width);
+			if ( that.$result ){
+				that.$result.width(width);
+			};
 		},300);
 
 		$.each(this.options.selectedData,function(index,item){
@@ -518,18 +520,34 @@ ChironSearch.prototype.reset=function(){
 	return this.$trigger;
 };
 
+// Reset configure of plugin,then initialize.
+ChironSearch.prototype.reConfig=function(options){
+	var that=this;
+
+	if ( !options || $.type(options)!="object" ) return;
+
+	$.each(options,function(key,value){
+		if ( that.options[key] ) that.options[key]=value;
+	});
+
+	this.destroy();
+
+	this.init();
+};
+
 // Clean result.
 ChironSearch.prototype.destroy=function(){
 	this.$trigger.siblings(".chiron-search-result").remove();
 	this.$trigger.siblings("[name='"+this.options.name+"']").remove();
 
-	this.$result.html("");
+	this.$result.remove();
+	delete this.$result;
 
 	return this.$trigger;
 };
 
 // Public methods of ChironSearch.Use '$(ele).chironSearch("destroy")' to execute.
-var allowedMethods=["getSelectedData","reset","destroy"];
+var allowedMethods=["getSelectedData","reset","reConfig","destroy"];
 
 // jQuery Pulgin
 $.prototype.chironSearch=function(option){
@@ -570,7 +588,7 @@ $.prototype.chironSearch=function(option){
 
 	// If the current options is different from the previous options,and options'type is object,
 	// then create another ChironSearch instance.
-	if ( data && $.type(data)=="object" ){
+	if ( data && $.type(data)=="object" && $.type(option)=="object" ){
 		if ( !equal(data.originOptions,options) ){
 			data.destroy();
 			$(this).removeData('chiron-search');

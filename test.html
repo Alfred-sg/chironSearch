@@ -45,11 +45,18 @@ $(function(){
 		}],
 		selectedData:[1],
 		uploadForm:"select"
-	}).css({"width":400})
+	},111).css({"width":400})
 
-	$("#chiron").on("select:chironSearch",function(event,ele){
+	$("#chiron").chironSearch("reConfig",{
+		data:[{
+			field:1,
+			value:"apple"
+		}]
+	})
+
+	/*$("#chiron").on("select:chironSearch",function(event,ele){
 		console.log(ele)
-	});
+	});*/
 
 	$("#toggle1").click(function(){
 		$("#chiron").chironSearch({
