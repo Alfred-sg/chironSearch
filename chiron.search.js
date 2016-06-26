@@ -563,11 +563,11 @@ $.prototype.chironSearch=function(option){
 
 	// Get Html options.
 	$.each(ChironSearch.DEFAULTS,function(key){
-		htmlOptions[key]=$(that).data()[key];
+		if ( $(that).data()[key] ) htmlOptions[key]=$(that).data()[key];
 	});
 
 	// Merge default options,Html options,Js options onto options.
-	options=$.extend({},ChironSearch.DEFAULTS,htmlOptions,typeof option==='object' && option);
+	options=$.extend(true,{},ChironSearch.DEFAULTS,htmlOptions,typeof option==='object' && option);
 
 	// If options's type is string,execute the corresponding method of ChironSearch instance.
 	if ( typeof option=="string" ){
@@ -602,7 +602,7 @@ $.prototype.chironSearch=function(option){
 	};
 
 	// Return dom object or the result of ChironSearch instance method.
-	return typeof value=='undefined' ? $(this) : value;
+	return typeof value==undefined ? $(this) : value;
 };
 
 // Check objA is equal to objB,return true or false.
